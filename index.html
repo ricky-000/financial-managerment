@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>互動財務規劃（分類/屬性下拉＋側欄設定）</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<h1>互動財務規劃</h1>
+
+<div class="grid">
+  <div class="card">
+    <h2>新增支出</h2>
+    <div class="row">
+      <input id="name" placeholder="項目名稱（直接輸入）" />
+      <select id="cat"></select>
+      <button id="catSetting" type="button">設定分類</button>
+      <select id="attr"></select>
+      <button id="attrSetting" type="button">設定屬性</button>
+      <input id="amt" type="number" min="0" step="1" placeholder="金額（NT$）" />
+      <button id="add" type="button">加入清單</button>
+    </div>
+    <div class="row">
+      <button id="clear" type="button">清空清單</button>
+      <span class="total" id="total">總計：$0</span>
+    </div>
+    <div class="row muted">說明：點「設定分類/屬性」可新增或刪除下拉選項；不影響既有紀錄。</div>
+  </div>
+
+  <div class="card">
+    <h2>屬性比例</h2>
+    <canvas id="pie"></canvas>
+  </div>
+</div>
+
+<div class="card">
+  <h2>支出清單</h2>
+  <table>
+    <thead><tr><th>項目</th><th>用途分類</th><th>屬性</th><th>金額</th><th>操作</th></tr></thead>
+    <tbody id="tbody"></tbody>
+  </table>
+  <div class="row">
+    <button id="save" type="button">儲存到本機</button>
+    <button id="load" type="button">載入本機</button>
+    <span class="muted">僅儲存在此瀏覽器（localStorage）。</span>
+  </div>
+</div>
+
+<!-- 側欄設定 -->
+<div id="drawer" class="drawer" aria-hidden="true">
+  <div class="flex" style="justify-content:space-between;align-items:center">
+    <h2 id="drawerTitle" style="margin:0;font-size:18px">管理選項</h2>
+    <button id="closeDrawer" type="button">關閉</button>
+  </div>
+
+  <div>
+    <h3>現有選項</h3>
+    <div id="optList" class="list"></div>
+  </div>
+
+  <div>
+    <h3>新增選項</h3>
+    <div class="flex">
+      <input id="newOpt" placeholder="輸入新選項名稱" />
+      <button id="addOpt" type="button">新增</button>
+    </div>
+  </div>
+
+  <div class="muted">提示：刪除僅移除下拉選單內的選項，不會變更已建立的支出紀錄。</div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

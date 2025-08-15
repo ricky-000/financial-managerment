@@ -1,0 +1,122 @@
+/* ===== 基礎（高對比、簡約） ===== */
+:root{
+  --bg:#ffffff; --fg:#111216; --muted:#5b616e; --border:#c9ced6;
+  --card:#ffffff; --card-border:#d9dee5; --accent:#111216;
+
+  --btn-bg:#111216; --btn-fg:#ffffff; --btn-bg-hover:#000000;
+
+  --input-bg:#ffffff; --input-fg:#111216;
+  --input-border:#aab1bb; --input-border-focus:#111216;
+
+  --table-head:#f2f4f7; --table-row:#ffffff;
+  --table-row-alt:#f9fafb; --table-row-hover:#eef2f7;
+
+  --danger:#b42318; --danger-bg:#fff1f0; --danger-border:#f3b3ad;
+}
+
+/* 深色模式 */
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0f1012; --fg:#e8e9ea; --muted:#9aa1ab; --border:#2b2f36;
+    --card:#121316; --card-border:#2b2f36; --accent:#e8e9ea;
+
+    --btn-bg:#e8e9ea; --btn-fg:#0f1012; --btn-bg-hover:#ffffff;
+
+    --input-bg:#1b1d21; --input-fg:#e8e9ea;
+    --input-border:#3a4048; --input-border-focus:#e8e9ea;
+
+    --table-head:#1b1d21; --table-row:#121316;
+    --table-row-alt:#15181c; --table-row-hover:#1c2026;
+
+    --danger:#ffb4a8; --danger-bg:#2a1412; --danger-border:#7a2a22;
+  }
+}
+
+/* ===== 版面 ===== */
+html,body{height:100%}
+body{
+  background:var(--bg); color:var(--fg);
+  font:16px/1.55 ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans","Helvetica Neue",Arial;
+  max-width:1100px; margin:24px auto; padding:0 16px;
+}
+
+h1{font-size:22px; margin:0 0 12px}
+h2{font-size:16px; margin:0 0 8px; color:var(--accent)}
+
+.muted{color:var(--muted); font-size:12px}
+.total{font-weight:700}
+
+.grid{display:grid; grid-template-columns:1.2fr .8fr; gap:16px}
+@media (max-width:900px){ .grid{grid-template-columns:1fr} }
+
+.card{
+  background:var(--card); border:1px solid var(--card-border);
+  border-radius:12px; padding:12px;
+}
+
+/* ===== 表單與按鈕 ===== */
+input,select,button{
+  font:inherit; height:38px; padding:8px 10px;
+  border-radius:8px; border:1px solid var(--input-border);
+  background:var(--input-bg); color:var(--input-fg);
+}
+input::placeholder{color:var(--muted)}
+input:focus, select:focus, button:focus{
+  outline:2px solid var(--input-border-focus); outline-offset:1px;
+}
+
+button{
+  background:var(--btn-bg); color:var(--btn-fg);
+  border:1px solid var(--btn-bg); cursor:pointer;
+}
+button:hover{ background:var(--btn-bg-hover) }
+
+/* 次要按鈕 */
+button#clear, button#catSetting, button#attrSetting, button#save, button#load{
+  background:transparent; color:var(--accent); border:1px solid var(--border);
+}
+button#clear:hover, button#catSetting:hover, button#attrSetting:hover, button#save:hover, button#load:hover{
+  background:var(--table-row-hover);
+}
+
+/* 刪除鍵 */
+button.del{
+  background:transparent; color:var(--danger); border:1px solid var(--danger-border);
+}
+button.del:hover{ background:var(--danger-bg) }
+
+/* ===== 表格 ===== */
+table{ width:100%; border-collapse:collapse }
+thead th{
+  background:var(--table-head); color:var(--accent);
+  text-align:left; font-weight:600; border-bottom:1px solid var(--border); padding:10px;
+}
+td{ border-bottom:1px solid var(--border); padding:10px }
+tbody tr:nth-child(even){ background:var(--table-row-alt) }
+tbody tr:hover{ background:var(--table-row-hover) }
+td:last-child{ width:140px }
+
+/* ===== 側欄（設定） ===== */
+.drawer{
+  position:fixed; top:0; right:-400px; width:360px; height:100vh;
+  background:var(--card); border-left:1px solid var(--card-border);
+  box-shadow:0 0 20px rgba(0,0,0,.08);
+  transition:right .25s ease; z-index:50; padding:16px;
+  display:flex; flex-direction:column; gap:12px
+}
+.drawer.open{ right:0 }
+.list{
+  border:1px solid var(--border);
+  border-radius:8px; padding:8px; max-height:220px; overflow:auto
+}
+.list .item{
+  display:flex; justify-content:space-between; align-items:center;
+  border-bottom:1px dashed var(--border); padding:6px 2px
+}
+.list .item:last-child{ border-bottom:none }
+
+/* ===== 行距與對齊 ===== */
+.row{ display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin:8px 0 }
+
+/* ===== 圖表 ===== */
+canvas#pie{ inline-size:100%; max-width:520px }
