@@ -12,7 +12,7 @@ function loadState(){
   rows = JSON.parse(localStorage.getItem(KEY_ROWS)||'[]');
   const o = JSON.parse(localStorage.getItem(KEY_OPTS)||'null');
   if(o && Array.isArray(o.cats) && Array.isArray(o.attrs)){ opts=o; }
-  else{ opts={ cats:['必要','發展','彈性','投資'], attrs:['固定','變動','一次性','分期'] }; }
+  else{ opts={ cats:['必要支出','休閒娛樂','學習與提升','投資'], attrs:['固定','變動'] }; }
 }
 function saveState(){
   localStorage.setItem(KEY_ROWS, JSON.stringify(rows));
